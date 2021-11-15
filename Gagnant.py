@@ -1,0 +1,2 @@
+def ChercherGagnantVertical(colonne, ligne):
+    
