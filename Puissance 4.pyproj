@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>42605830-e8b5-4cf3-96df-c9aa46045b6a</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Puissance_4.py</StartupFile>
+    <StartupFile>main.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -21,10 +21,15 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Gagnant.py">
+    <Compile Include="config.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Puissance_4.py" />
+    <Compile Include="alignements.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="entree.py" />
+    <Compile Include="main.py" />
+    <Compile Include="sortie.py" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Fiche de validation.odt" />
