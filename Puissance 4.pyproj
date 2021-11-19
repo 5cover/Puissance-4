@@ -21,12 +21,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="config.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="alignements.py">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="config.py" />
+    <Compile Include="alignements.py" />
     <Compile Include="entree.py" />
     <Compile Include="main.py" />
     <Compile Include="sortie.py" />

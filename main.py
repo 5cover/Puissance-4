@@ -1,10 +1,10 @@
 ﻿# main.py
 # Point d'entrée du programme
 
-import config
+from config import *
 from Entree import ChoisirJoueurs
-from Sortie import AfficherGrille
-from Gagnant import ChercherGagnant
+from sortie import AfficherGrille
+from alignements import ChercherAlignement
 
 ChoisirJoueurs()
 AfficherGrille()

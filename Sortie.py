@@ -1,7 +1,7 @@
 ﻿# sortie.py
 # Fonctions d'affichage
 
-import config
+from config import *
 
 def AfficherGrille():
 
@@ -16,11 +16,9 @@ def AfficherGrille():
     for ligne in range(HAUTEUR):
 
         if ligne == 0:
-            # Haut de la grille
-            print(f' ┌{"─┬"*(LARGEUR-1)}─┐', end='\n │')
+            AfficherHautGrille()
         else:
-            # Séparation entre les lignes
-            print(f' ├{"─┼"*(LARGEUR-1)}─┤', end='\n │')
+            AfficherEntreLigne()
 
         for colonne in range(LARGEUR):
             # Pions
@@ -28,5 +26,13 @@ def AfficherGrille():
 
         print()
 
-    # Bas de la grille
+    AfficherBasGrille()
+
+def AfficherHautGrille():
+    print(f' ┌{"─┬"*(LARGEUR-1)}─┐', end='\n │')
+
+def AfficherBasGrille():
     print(f' └{"─┴"*(LARGEUR-1)}─┘')
+
+def AfficherEntreLigne():
+    print(f' ├{"─┼"*(LARGEUR-1)}─┤', end='\n │')

@@ -1,7 +1,7 @@
 # entree.py
 # Fonctions d'entrée utilisateur
 
-import config
+from config import *
 
 def DemanderJouerAvecOrdinateur():
     reponse = ''

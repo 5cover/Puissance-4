@@ -1,7 +1,7 @@
 # alignements.py
 # Fonctions cherchant des alignements sur la grille
 
-import config
+from config import *
 
 def ChercherAlignement(colonne, etat):
     pass
