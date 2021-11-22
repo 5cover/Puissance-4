@@ -2,9 +2,17 @@
 # Point d'entrée du programme
 
 from config import *
-from entree import ChoisirJoueurs
-from sortie import AfficherGrille
-from alignements import ChercherAlignement
+import entree
+import sortie
+import alignements
 
 ChoisirJoueurs()
 AfficherGrille()
+PlacerPion(2, Case.JOUEUR_1)
+AfficherGrille()
+
+def PlacerPion(colonne, joueur):
+    for ligne in range(HAUTEUR-1, 0, -1):
+        if grille[colonne][ligne] == Case.VIDE:
+            grille[colonne][ligne] = joueur
+            break

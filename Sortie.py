@@ -13,14 +13,14 @@ def AfficherGrille():
     # Sauter une ligne
     print()
 
-    for ligne in range(HAUTEUR):
+    for ligne in HAUTEUR:
 
         if ligne == 0:
             AfficherHautGrille()
         else:
             AfficherEntreLigne()
 
-        for colonne in range(LARGEUR):
+        for colonne in LARGEUR:
             # Pions
             print(grille[colonne][ligne].value, end = '│')
 
