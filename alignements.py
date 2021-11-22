@@ -4,4 +4,6 @@
 from config import *
 
 def ChercherAlignement(colonne, etat):
+
     pass
+ 
