@@ -1,7 +1,7 @@
 ﻿# sortie.py
 # Fonctions d'affichage
 
-from config import *
+import config
 
 def AfficherGrille():
 

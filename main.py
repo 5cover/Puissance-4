@@ -2,9 +2,9 @@
 # Point d'entrée du programme
 
 from config import *
-import entree
-import sortie
-import alignements
+from entree import ChoisirJoueurs
+from sortie import AfficherGrille
+from alignements import ChercherAlignement
 
 ChoisirJoueurs()
 AfficherGrille()
