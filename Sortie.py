@@ -1,7 +1,7 @@
 ﻿# sortie.py
 # Fonctions d'affichage
 
-import config
+from config import *
 
 def AfficherGrille():
 
@@ -13,14 +13,14 @@ def AfficherGrille():
     # Sauter une ligne
     print()
 
-    for ligne in HAUTEUR:
+    for ligne in range(HAUTEUR):
 
         if ligne == 0:
             AfficherHautGrille()
         else:
             AfficherEntreLigne()
 
-        for colonne in LARGEUR:
+        for colonne in range(LARGEUR):
             # Pions
             print(grille[colonne][ligne].value, end = '│')
 
