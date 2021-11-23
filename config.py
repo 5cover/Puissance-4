@@ -14,10 +14,12 @@ HAUTEUR = 6
 # Nombre de colonnes de la grille
 LARGEUR = 7
 
+# Longueur d'un alignement nécessaire pour gagner la partie
+LONGUEUR_ALIGNEMENT = 4
 
+
+# Tableau de lignes
 # le for évite la réutilisation de la première ligne créée
-
-# Tableau de lignes (pas de colonnes)
 grille = [[Case.VIDE] * HAUTEUR for _ in range(LARGEUR)]
 nomJoueur1 = ''
 nomJoueur2 = ''
