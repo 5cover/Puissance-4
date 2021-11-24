@@ -28,6 +28,7 @@
     <Compile Include="sortie.py" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="diapo.odp" />
     <Content Include="Fiche de validation.odt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

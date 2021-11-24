@@ -2,17 +2,22 @@
 # Point d'entrée du programme
 
 from config import *
-from entree import ChoisirJoueurs
+from entree import *
 from sortie import AfficherGrille
 from alignements import ChercherAlignement, ObtenirLigneDisponible
 
+""" Boucle principale du programme """
+def main():
+    jouerAvecPC = DemanderJouerAvecOrdinateur()
+    nomJoueur1 = DemanderNomJoueur1()
+    nomJoueur2 = "Ordinateur" if jouerAvecPC else DemanderNomJoueur2() # condition ternaire
+
+    colonneDernierTour = 0
+    ligneDernierTour = 0
+
+    while not ChercherAlignement(colonneDernierTour, ligneDernierTour):
+        pass
 
 
-ChoisirJoueurs()
-AfficherGrille()
 
-
-grille[2][ObtenirLigneDisponible(2)] = Case.JOUEUR_1
-ChercherAlignement(2, ObtenirLigneDisponible(2), Case.JOUEUR_1)
-
-AfficherGrille()
+main()

@@ -21,5 +21,3 @@ LONGUEUR_ALIGNEMENT = 4
 # Tableau de lignes
 # le for évite la réutilisation de la première ligne créée
 grille = [[Case.VIDE] * HAUTEUR for _ in range(LARGEUR)]
-nomJoueur1 = ''
-nomJoueur2 = ''

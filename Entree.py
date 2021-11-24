@@ -3,17 +3,20 @@
 
 from config import *
 
+""" 
+Demande à l'utilisateur s'il souhaite jouer contre l'ordinateur.
+
+Retourne True si oui, False sinon.
+""" 
 def DemanderJouerAvecOrdinateur():
     reponse = ''
     while (reponse.lower() != 'o' and reponse.lower() != 'n'):
         reponse = input("Jouer avec l'ordinateur ? (o/n) ")
-    return reponse == 'o'
+    return reponse.lower() == 'o'
 
-def ChoisirJoueurs():
+def DemanderNomJoueur1():
+    return input("Nom du joueur 1 : ")
 
-    if DemanderJouerAvecOrdinateur():
-        nomJoueur1 = input("Votre nom : ")
-        nomJoueur2 = "Ordinateur"
-    else:
-        nomJoueur1 = input("Nom du joueur 1 : ")
-        nomJoueur2 = input("Nom du joueur 2 : ")
+def DemanderNomJoueur2():
+    return input("Nom du joueur 2 : ")
+
