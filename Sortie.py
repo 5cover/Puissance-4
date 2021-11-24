@@ -1,10 +1,10 @@
 ﻿# sortie.py
 # Fonctions d'affichage
 
+from os import system, name
 from config import *
 
 def AfficherGrille():
-
     # Afficher les numéros de colonnes
     print("  ", end = "")
     for ligneNo in range(1, LARGEUR+1):
@@ -36,3 +36,6 @@ def AfficherBasGrille():
 
 def AfficherEntreLigne():
     print(f' ├{"─┼"*(LARGEUR-1)}─┤', end='\n │')
+
+def AfficherCestAuTourDe(nomJoueur):
+    print(f"C'est au tour de {nomJoueur}.")

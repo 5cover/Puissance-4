@@ -29,16 +29,16 @@ def ChercherAlignement(colonne, ligne):
     # décalage de la plage d'index voisins à tester pour tester toutes les positions possibles du pion actuel dans l'alignement
     for offset in range(LONGUEUR_ALIGNEMENT):
 
-        # voisin ∈ [-offset; LONGUEUR_ALIGNEMENT - offset[ ∩ [-colonne; LARGEUR-colonne[ ∩ [-ligne; HAUTEUR-ligne[
+        # voisin ∈ [-offset; LONGUEUR_ALIGNEMENT - offset[
         # voisin : décalage de l'index du pion a tester si membre de l'alignement ou non
         for voisin in range(-offset, LONGUEUR_ALIGNEMENT - offset):
 
             if voisin == 0:
                 continue
 
-            lignePlusVoisinExiste = ligne + voisin >= 0 and ligne + voisin < LARGEUR
-            ligneMoinsVoisinExiste = ligne - voisin >= 0 and ligne - voisin < LARGEUR
-            colonnePlusVoisinExiste = colonne + voisin >= 0 and colonne + voisin < HAUTEUR
+            lignePlusVoisinExiste = ligne + voisin >= 0 and ligne + voisin < HAUTEUR
+            ligneMoinsVoisinExiste = ligne - voisin >= 0 and ligne - voisin < HAUTEUR
+            colonnePlusVoisinExiste = colonne + voisin >= 0 and colonne + voisin < LARGEUR
 
             horizontal    = horizontal    and colonnePlusVoisinExiste                            and grille[colonne + voisin][ligne] == joueur
             vertical      = vertical      and lignePlusVoisinExiste                              and grille[colonne][ligne + voisin] == joueur
@@ -49,11 +49,11 @@ def ChercherAlignement(colonne, ligne):
             return True
     return False
 
-""" Retourne la ligne de la case vide la plus basse à la colonne spécifiée, ou -1 si la colonne n'a aucune ligne vide. """
+""" Retourne la ligne de la case vide la plus basse à la colonne spécifiée, ou ERREUR_COLONNE_PLEINE si la colonne n'a aucune ligne vide. """
 def ObtenirLigneDisponible(colonne):
     for ligne in reversed(range(HAUTEUR)):
         if grille[colonne][ligne] == Case.VIDE:
             return ligne
-    return -1
+    return ERREUR_COLONNE_PLEINE
 
  
