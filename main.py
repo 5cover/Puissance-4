@@ -9,6 +9,8 @@ from alignements import ChercherAlignement, ObtenirLigneDisponible
 
 def JouerTour(nomJoueur, joueur):
 
+    assert(joueur != Case.VIDE) # un joueur ne peut pas jouer une case vide (abscence de pion)
+
     AfficherCestAuTourDe(nomJoueur)
 
     ligne = ERREUR_COLONNE_PLEINE
@@ -19,7 +21,7 @@ def JouerTour(nomJoueur, joueur):
 
     grille[colonne][ligne] = joueur
 
-    return ChercherAlignement(colonne, ligne)
+    return colonne,ligne
 
 def JouerTourAuto(nomJoueur, joueur):
 
@@ -33,6 +35,8 @@ def JouerTourAuto(nomJoueur, joueur):
 
     grille[randColonne][randLigne] = joueur
 
+    return randColonne,randLigne
+
 """ Boucle principale du programme """
 def Main():
 
@@ -42,20 +46,25 @@ def Main():
 
     AfficherGrille()
 
-    # Tant qu'aucun des deux joueurs n'a gagné
+    # Boucle infine
     while True:
 
-        if JouerTour(nomJoueur1, Case.JOUEUR_1):
-            break
+        (colonne, ligne) = JouerTour(nomJoueur1, Case.JOUEUR_1)
+
         AfficherGrille()
+
+        if ChercherAlignement(colonne, ligne):
+            break
 
         if jouerAvecPC:
-            if JouerTourAuto(nomJoueur2, Case.JOUEUR_2):
-                break
-        elif JouerTour(nomJoueur2, Case.JOUEUR_2):
-            break
+            (colonne, ligne) = JouerTourAuto(nomJoueur2, Case.JOUEUR_2)
+        else:
+            (colonne, ligne) = JouerTour(nomJoueur2, Case.JOUEUR_2)
+        
         AfficherGrille()
 
-    AfficherGrille()
+        if ChercherAlignement(colonne, ligne):
+            break
+
 
 Main()

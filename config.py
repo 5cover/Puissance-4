@@ -18,7 +18,7 @@ LARGEUR = 7
 LONGUEUR_ALIGNEMENT = 4
 
 
-# Représente un code d'erreur.
+# Représente un code d'erreur de colonne pleine.
 ERREUR_COLONNE_PLEINE = -1
 
 # Tableau de lignes
