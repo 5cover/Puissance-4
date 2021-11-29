@@ -1,7 +1,6 @@
 ﻿# sortie.py
 # Fonctions d'affichage
 
-from os import system, name
 from config import *
 
 def AfficherGrille():
@@ -37,5 +36,5 @@ def AfficherBasGrille():
 def AfficherEntreLigne():
     print(f' ├{"─┼"*(LARGEUR-1)}─┤', end='\n │')
 
-def AfficherCestAuTourDe(nomJoueur):
+def AfficherCestAuTourDe(nomJoueur: str):
     print(f"C'est au tour de {nomJoueur}.")

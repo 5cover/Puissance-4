@@ -11,7 +11,7 @@ ligne : ligne du dernier pion placé
 
 Retourne True si un alignement a été trouvé, sinon False
 """
-def ChercherAlignement(colonne, ligne):
+def ChercherAlignement(colonne: int, ligne: int)
 
     assert(colonne >= 0 and colonne < LARGEUR) # colonne ∈ [0 ; LARGEUR[
     assert(ligne >= 0 and ligne < HAUTEUR) # colonne ∈ [0 ; HAUTEUR[

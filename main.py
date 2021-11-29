@@ -7,7 +7,7 @@ from entree import *
 from sortie import AfficherCestAuTourDe, AfficherGrille
 from alignements import ChercherAlignement, ObtenirLigneDisponible
 
-def JouerTour(nomJoueur, joueur):
+def JouerTour(nomJoueur: str, joueur: Case):
 
     assert(joueur != Case.VIDE) # un joueur ne peut pas jouer une case vide (abscence de pion)
 
@@ -23,7 +23,7 @@ def JouerTour(nomJoueur, joueur):
 
     return colonne,ligne
 
-def JouerTourAuto(nomJoueur, joueur):
+def JouerTourAuto(nomJoueur: str, joueur: Case):
 
     AfficherCestAuTourDe(nomJoueur)
 
