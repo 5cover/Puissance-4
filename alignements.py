@@ -49,6 +49,7 @@ def ChercherAlignement(colonne: int, ligne: int):
 
 """ Retourne la ligne de la case vide la plus basse à la colonne spécifiée, ou ERREUR_COLONNE_PLEINE si la colonne n'a aucune ligne vide. """
 def ObtenirLigneDePose(colonne: int):
+    assert(EstColonneValide(colonne))
     for ligne in reversed(range(HAUTEUR)):
         if grille[colonne][ligne] == Case.VIDE:
             return ligne

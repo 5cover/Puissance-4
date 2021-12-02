@@ -22,12 +22,13 @@ def Main():
         derniereColonne = DemanderColonne() # Demande colonne
         derniereLigne = ObtenirLigneDePose(derniereColonne) # Obtenir ligne
 
-        grille[derniereColonne][ObtenirLigneDePose(derniereColonne)] = Case.JOUEUR_1 # Placer le pion
+        grille[derniereColonne][derniereLigne] = Case.JOUEUR_1 # Placer le pion
 
         AfficherGrille() # Afficher la grille
 
         if ChercherAlignement(derniereColonne, derniereLigne): # Chercher un alignement
             break
+
 
         AfficherCestAuTourDe(nomJoueur2)
 
