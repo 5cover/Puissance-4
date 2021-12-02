@@ -7,7 +7,7 @@ from random import randint
 # Représente les caractères de représentation d'une case.
 # Il s'agit d'une énumération. Une variable de type Case peut prendre l'une de ces valeurs.
 class Case(Enum):
-    VIDE = '\0'
+    VIDE = ' '
     JOUEUR_1 = '█'
     JOUEUR_2 = '░'
 
