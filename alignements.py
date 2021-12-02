@@ -11,10 +11,10 @@ ligne : ligne du dernier pion placé
 
 Retourne True si un alignement a été trouvé, sinon False
 """
-def ChercherAlignement(colonne: int, ligne: int)
+def ChercherAlignement(colonne: int, ligne: int):
 
-    assert(colonne >= 0 and colonne < LARGEUR) # colonne ∈ [0 ; LARGEUR[
-    assert(ligne >= 0 and ligne < HAUTEUR) # colonne ∈ [0 ; HAUTEUR[
+    assert(EstColonneValide(colonne))
+    assert(EstLigneValide(ligne))
 
     joueur = grille[colonne][ligne]
     if joueur == Case.VIDE:
@@ -34,9 +34,9 @@ def ChercherAlignement(colonne: int, ligne: int)
             if decalageIndex == 0:
                 continue
 
-            lignePlusVoisinExiste = ligne + decalageIndex >= 0 and ligne + decalageIndex < HAUTEUR
-            ligneMoinsVoisinExiste = ligne - decalageIndex >= 0 and ligne - decalageIndex < HAUTEUR
-            colonnePlusVoisinExiste = colonne + decalageIndex >= 0 and colonne + decalageIndex < LARGEUR
+            lignePlusVoisinExiste = EstLigneValide(ligne + decalageIndex)
+            ligneMoinsVoisinExiste =  EstLigneValide(ligne - decalageIndex)
+            colonnePlusVoisinExiste = EstColonneValide(colonne + decalageIndex)
 
             horizontal    = horizontal    and colonnePlusVoisinExiste                            and grille[colonne + decalageIndex][ligne] == joueur
             vertical      = vertical      and lignePlusVoisinExiste                              and grille[colonne][ligne + decalageIndex] == joueur
@@ -48,7 +48,7 @@ def ChercherAlignement(colonne: int, ligne: int)
     return False
 
 """ Retourne la ligne de la case vide la plus basse à la colonne spécifiée, ou ERREUR_COLONNE_PLEINE si la colonne n'a aucune ligne vide. """
-def ObtenirLigneDisponible(colonne):
+def ObtenirLigneDePose(colonne: int):
     for ligne in reversed(range(HAUTEUR)):
         if grille[colonne][ligne] == Case.VIDE:
             return ligne

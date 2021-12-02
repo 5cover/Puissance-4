@@ -1,6 +1,7 @@
 ﻿# entree.py
 # Fonctions d'entrée utilisateur
 
+from alignements import ObtenirLigneDePose
 from config import *
 
 """ 
@@ -20,20 +21,29 @@ def DemanderNomJoueur1():
 def DemanderNomJoueur2():
     return input("Nom du joueur 2 : ")
 
-"""
-Demande à l'utilisateur la colonne ou placer un pion.
-
-Retourne le numéro de la colonne entré.
-"""
+"""Retourne une colonne valid où jouer, choisie par l'utilisateur."""
 def DemanderColonne():
-    colonne = -1
-    while colonne < 0 or colonne >= LARGEUR:
+    colonne = int(input("Colonne : ")) - 1
+    while not EstColonneValide(colonne) or ObtenirLigneDePose(colonne) == ERREUR_COLONNE_PLEINE:
         try:
-            # on enlève 1 : les colonnes commence par 1 pour l'utilisateur mais par 0 en index de grille.
+            # on enlève 1 : les colonnes commencent par 1 pour l'utilisateur mais par 0 en index de grille.
             colonne = int(input("Colonne : ")) - 1
 
-        # Si l'entrée est invalide
+        # Sans cette ligne, le programme plante si input reçoit une entrée invalide.
+        # Il s'agit d'une exception.
+        # Ici, on retourne au début de la boucle en cas d'exception de type ValueError.
         except ValueError:
             continue
 
     return colonne
+
+
+"""Retourne une colonne valide où jouer, choisie automatiquement par l'ordinateur."""
+def DemanderColonnePC():
+
+    randColonne = GenererColonneAleatoire()
+
+    while ObtenirLigneDePose(randColonne) == ERREUR_COLONNE_PLEINE:
+            randColonne = GenererColonneAleatoire()
+
+    return randColonne
