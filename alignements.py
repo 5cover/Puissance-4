@@ -27,7 +27,7 @@ def ChercherAlignement(colonne: int, ligne: int):
         diagonaleGHDB = True
         diagonaleDHGB = True
 
-        # voisin ∈ [-offset; LONGUEUR_ALIGNEMENT - offset[
+        # voisin ∈ [-offsetPositionAlignement; LONGUEUR_ALIGNEMENT - offsetPositionAlignement[
         # voisin : décalage de l'index du pion a tester si membre de l'alignement ou non
         for decalageIndex in range(-offsetPositionAlignement, LONGUEUR_ALIGNEMENT - offsetPositionAlignement):
 
