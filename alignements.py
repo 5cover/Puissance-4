@@ -28,9 +28,9 @@ def ChercherAlignement(colonne: int, ligne: int):
         diagonaleGHDB = True
         diagonaleDHGB = True
 
-        # decalageIndex ∈ [-offsetPositionAlignement; LONGUEUR_ALIGNEMENT - offsetPositionAlignement[ ∩ R* (inutile de chercher un alignement avec un décalage d'index de 0)
-        # decalageIndex : décalage de l'index du pion a tester si membre de l'alignement ou non
-        for decalageIndex in (decalageIndex for decalageIndex in range(-offsetPositionAlignement, LONGUEUR_ALIGNEMENT - offsetPositionAlignement) if decalageIndex != 0 and (vertical or horizontal or diagonaleGHDB or diagonaleDHGB)):
+        # voisin ∈ [-offsetPositionAlignement; LONGUEUR_ALIGNEMENT - offsetPositionAlignement[
+        # voisin : décalage de l'index du pion a tester si membre de l'alignement ou non
+        for decalageIndex in range(-offsetPositionAlignement, LONGUEUR_ALIGNEMENT - offsetPositionAlignement):
 
             ligneDevant = EstLigneValide(ligne + decalageIndex)
             colonneDevant = EstColonneValide(colonne + decalageIndex)
