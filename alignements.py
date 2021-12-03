@@ -19,6 +19,7 @@ def ChercherAlignement(colonne: int, ligne: int):
     joueur = grille[colonne][ligne]
     if joueur == Case.VIDE:
         return False
+
     # décalage de la plage d'index voisins à tester pour tester toutes les positions possibles du pion actuel dans l'alignement
     for offsetPositionAlignement in range(LONGUEUR_ALIGNEMENT):
 
@@ -27,22 +28,20 @@ def ChercherAlignement(colonne: int, ligne: int):
         diagonaleGHDB = True
         diagonaleDHGB = True
 
-        # voisin ∈ [-offset; LONGUEUR_ALIGNEMENT - offset[
-        # voisin : décalage de l'index du pion a tester si membre de l'alignement ou non
-        for decalageIndex in range(-offsetPositionAlignement, LONGUEUR_ALIGNEMENT - offsetPositionAlignement):
+        # decalageIndex ∈ [-offset; LONGUEUR_ALIGNEMENT - offset[ sans 0 (inutile de chercher un alignement avec un décalage d'index de 0)
+        # decalageIndex : décalage de l'index du pion a tester si membre de l'alignement ou non
+        for decalageIndex in (decalageIndex for decalageIndex in range(-offsetPositionAlignement, LONGUEUR_ALIGNEMENT - offsetPositionAlignement) if decalageIndex != 0 and (vertical or horizontal or diagonaleGHDB or diagonaleDHGB)):
 
-            if decalageIndex == 0:
-                continue
+            ligneDevant = EstLigneValide(ligne + decalageIndex)
+            colonneDevant = EstColonneValide(colonne + decalageIndex)
+            ligneDerriere = EstLigneValide(ligne - decalageIndex)
 
-            ligneDevantExiste = EstLigneValide(ligne + decalageIndex)
-            ligneDerriereExiste =  EstLigneValide(ligne - decalageIndex)
-            colonneDevantExiste = EstColonneValide(colonne + decalageIndex)
+            # Opérateurs séquentiels
 
-            # Utilisation des opérateurs séquenciels
-            horizontal    = horizontal    and colonneDevantExiste                            and grille[colonne + decalageIndex][ligne] == joueur
-            vertical      = vertical      and ligneDevantExiste                              and grille[colonne][ligne + decalageIndex] == joueur
-            diagonaleGHDB = diagonaleGHDB and colonneDevantExiste and ligneDevantExiste  and grille[colonne + decalageIndex][ligne + decalageIndex] == joueur 
-            diagonaleDHGB = diagonaleDHGB and colonneDevantExiste and ligneDerriereExiste and grille[colonne + decalageIndex][ligne - decalageIndex] == joueur
+            vertical = vertical and ligneDevant and grille[colonne][ligne + decalageIndex] == joueur
+            horizontal = horizontal and colonneDevant and grille[colonne + decalageIndex][ligne] == joueur
+            diagonaleGHDB = diagonaleGHDB and colonneDevant and ligneDevant and grille[colonne + decalageIndex][ligne + decalageIndex] == joueur
+            diagonaleDHGB = diagonaleDHGB and colonneDevant and ligneDerriere and grille[colonne + decalageIndex][ligne - decalageIndex] == joueur
 
         if vertical or horizontal or diagonaleGHDB or diagonaleDHGB: # si on a trouvé un alignement
             return True
