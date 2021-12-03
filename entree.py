@@ -23,6 +23,7 @@ def DemanderNomJoueur2():
 
 """Retourne une colonne valid où jouer, choisie par l'utilisateur."""
 def DemanderColonne():
+    
     colonne = int(input("Colonne : ")) - 1
     while not EstColonneValide(colonne) or ObtenirLigneDePose(colonne) == ERREUR_COLONNE_PLEINE:
         try:

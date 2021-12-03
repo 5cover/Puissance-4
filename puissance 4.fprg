@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value="Puissance 4"/>
+        <attribute name="authors" value="Scover"/>
+        <attribute name="about" value="Python - NSI"/>
+        <attribute name="saved" value="2021-12-03 08:44:09 "/>
+        <attribute name="created" value="U2NvdmVyO0RFU0tUT1AtMDNGVFBVTzsyMDIxLTEyLTAyOyIwNjoxMjowMSAiOzI4ODE="/>
+        <attribute name="edited" value="U2NvdmVyO0RFU0tUT1AtMDNGVFBVTzsyMDIxLTEyLTAzOyIwODo0NDowOSAiOzEyOzMwNTU="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <while expression="True">
+                <if expression="GrilleEstPleine()">
+                    <then>
+                        <call expression="AfficherMessageMatchNul()"/>
+                        <call expression="quit()"/>
+                    </then>
+                    <else>
+                        <call expression="JouerTour(nomJoueur1, CaseJOUEUR1)"/>
+                        <if expression="jouerAvecPC">
+                            <then>
+                                <call expression="JouerTourAuto(nomJoueur2, CaseJOUEUR2)"/>
+                            </then>
+                            <else>
+                                <call expression="JouerTour(nomJoueur2, CaseJOUEUR2)"/>
+                            </else>
+                        </if>
+                    </else>
+                </if>
+            </while>
+        </body>
+    </function>
+    <function name="ChercherAlignement" type="Boolean" variable="">
+        <parameters>
+            <parameter name="colonne" type="Integer" array="False"/>
+            <parameter name="ligne" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <assign variable="joueur" expression="grille(colonne, ligne)"/>
+            <for variable="offsetPositionAlignement" start="0" end="LONGUEURALIGNEMENT" direction="inc" step="1">
+                <assign variable="vertical" expression="True"/>
+                <assign variable="horizontal" expression="True"/>
+                <assign variable="diagonaleGHDB" expression="True"/>
+                <assign variable="diagonaleDHGB" expression="True"/>
+                <for variable="i" start="-offsetPositionAlignement" end="LONGUEURALIGNEMENT - offsetPositionAlignement" direction="inc" step="1">
+                    <assign variable="ligneDevant" expression="EstLigneValide(ligne + i)"/>
+                    <assign variable="colonneDevant" expression="EstColonneValide(colonne + i)"/>
+                    <assign variable="ligneDerriere" expression="EstLigneValide(ligne - i)"/>
+                    <assign variable="vertical" expression="vertical and ligneDevant and grille(colonne, ligne + i) == joueur"/>
+                    <assign variable="horizontal" expression="horizontal and colonneDevant and grille(colonne + i, ligne) == joueur"/>
+                    <assign variable="diagonaleGHDB" expression="diagonaleGHDB and colonneDevant and ligneDevant and grille(colonne + i, ligne + i) == joueur"/>
+                    <assign variable="diagonaleDHGB" expression="diagonaleDHGB and colonneDevant and ligneDerriere and grille(colonne + i, ligne - i) == joueur"/>
+                </for>
+                <if expression="vertical or horizontal or diagonaleGHDB or diagonaleDHGB">
+                    <then>
+                        <call expression="return(True)"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+        </body>
+    </function>
+    <function name="EstColonneValide" type="Integer" variable="colonne &gt;= 0 and colonne &lt; LARGEUR">
+        <parameters>
+            <parameter name="colonne" type="Integer" array="False"/>
+        </parameters>
+        <body/>
+    </function>
+    <function name="EstLigneValide" type="Integer" variable="ligne &gt;= 0 and ligne &lt; HAUTEUR">
+        <parameters>
+            <parameter name="ligne" type="Integer" array="False"/>
+        </parameters>
+        <body/>
+    </function>
+    <function name="JouerTour" type="None" variable="">
+        <parameters>
+            <parameter name="nomJoueur" type="String" array="False"/>
+            <parameter name="joueur" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <call expression="AfficherCestAuTourDe(nomJoueur)"/>
+            <assign variable="colonne" expression="DemanderColonne()"/>
+            <assign variable="ligne" expression="ObtenirLigneDePose(colonne)"/>
+            <call expression="grille(colonne, ligne, joueur)"/>
+            <call expression="AfficherGrille()"/>
+            <call expression="QuitterSiGagnant(colonne, ligne, nomJoueur)"/>
+        </body>
+    </function>
+    <function name="JouerTourAuto" type="None" variable="">
+        <parameters>
+            <parameter name="nomJoueur" type="String" array="False"/>
+            <parameter name="Case" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <call expression="AfficherCestAuTourDe(nomJoueur)"/>
+            <assign variable="colonne" expression="DemanderColonnePC()"/>
+            <assign variable="ligne" expression="ObtenirLigneDePose(colonne)"/>
+            <call expression="grille(colonne, ligne, joueur)"/>
+            <call expression="AfficherGrille()"/>
+            <call expression="QuitterSiGagnant(colonne, ligne, nomJoueur)"/>
+        </body>
+    </function>
+    <function name="ObtenirLigneDePose" type="Integer" variable="ERREURCOLONNEPLEINE">
+        <parameters>
+            <parameter name="colonne" type="Integer" array="False"/>
+        </parameters>
+        <body>
+            <for variable="ligne" start="HAUTEUR" end="0" direction="dec" step="1">
+                <if expression="grille(colonne, ligne) == CaseVIDE">
+                    <then>
+                        <assign variable="return" expression="ligne"/>
+                    </then>
+                    <else/>
+                </if>
+            </for>
+        </body>
+    </function>
+    <function name="QuitterSiGagnant" type="None" variable="">
+        <parameters>
+            <parameter name="colonne" type="Integer" array="False"/>
+            <parameter name="ligne" type="Integer" array="False"/>
+            <parameter name="nomJoueur" type="String" array="False"/>
+        </parameters>
+        <body>
+            <if expression="ChercherAlignement(colonne, ligne)">
+                <then>
+                    <call expression="AfficherMessageGagnant(nomJoueur)"/>
+                    <call expression="quit()"/>
+                </then>
+                <else/>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

@@ -44,3 +44,9 @@ def EstLigneValide(ligne: int):
 """ Retourne une colonne valide choisie aléatoirement """
 def GenererColonneAleatoire():
     return randint(0, LARGEUR-1)
+
+def GrilleEstPleine():
+    casesVides = 0
+    for colonne in range(LARGEUR):
+        casesVides += grille[colonne].count(Case.VIDE)
+    return casesVides == 0

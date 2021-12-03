@@ -28,30 +28,34 @@ def ChercherAlignement(colonne: int, ligne: int):
         diagonaleGHDB = True
         diagonaleDHGB = True
 
-        # voisin ∈ [-offsetPositionAlignement; LONGUEUR_ALIGNEMENT - offsetPositionAlignement[
-        # voisin : décalage de l'index du pion a tester si membre de l'alignement ou non
-        for decalageIndex in range(-offsetPositionAlignement, LONGUEUR_ALIGNEMENT - offsetPositionAlignement):
+        # decalageIndex ∈ [-offsetPositionAlignement; LONGUEUR_ALIGNEMENT - offsetPositionAlignement[
+        # decalageIndex : décalage de l'index du pion a tester si membre de l'alignement ou non
+        for i in (i for i in range(-offsetPositionAlignement, LONGUEUR_ALIGNEMENT - offsetPositionAlignement) if i != 0 and (vertical or horizontal or diagonaleGHDB or diagonaleDHGB)):
 
-            ligneDevant = EstLigneValide(ligne + decalageIndex)
-            colonneDevant = EstColonneValide(colonne + decalageIndex)
-            ligneDerriere = EstLigneValide(ligne - decalageIndex)
+            ligneDevant = EstLigneValide(ligne + i)
+            colonneDevant = EstColonneValide(colonne + i)
+            ligneDerriere = EstLigneValide(ligne - i)
 
             # Opérateurs séquentiels
 
-            vertical      = vertical and ligneDevant and                          grille[colonne][ligne + decalageIndex] == joueur
-            horizontal    = horizontal and colonneDevant and                      grille[colonne + decalageIndex][ligne] == joueur
-            diagonaleGHDB = diagonaleGHDB and colonneDevant and ligneDevant and   grille[colonne + decalageIndex][ligne + decalageIndex] == joueur
-            diagonaleDHGB = diagonaleDHGB and colonneDevant and ligneDerriere and grille[colonne + decalageIndex][ligne - decalageIndex] == joueur
+            vertical      = vertical and ligneDevant and                          grille[colonne][ligne + i] == joueur
+            horizontal    = horizontal and colonneDevant and                      grille[colonne + i][ligne] == joueur
+            diagonaleGHDB = diagonaleGHDB and colonneDevant and ligneDevant and   grille[colonne + i][ligne + i] == joueur
+            diagonaleDHGB = diagonaleDHGB and colonneDevant and ligneDerriere and grille[colonne + i][ligne - i] == joueur
 
         if vertical or horizontal or diagonaleGHDB or diagonaleDHGB: # si on a trouvé un alignement
             return True
+
     return False
 
 """ Retourne la ligne de la case vide la plus basse à la colonne spécifiée, ou ERREUR_COLONNE_PLEINE si la colonne n'a aucune ligne vide. """
 def ObtenirLigneDePose(colonne: int):
+
     assert(EstColonneValide(colonne))
+
     for ligne in reversed(range(HAUTEUR)):
         if grille[colonne][ligne] == Case.VIDE:
             return ligne
+
     return ERREUR_COLONNE_PLEINE
  

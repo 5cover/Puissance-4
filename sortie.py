@@ -38,3 +38,9 @@ def AfficherEntreLigne():
 
 def AfficherCestAuTourDe(nomJoueur: str):
     print(f"C'est au tour de {nomJoueur}.")
+
+def AfficherMessageGagnant(nomJoueur: str):
+    print(f"{nomJoueur} a gagné la partie.")
+
+def AfficherMessageMatchNul():
+    print("Match nul.")

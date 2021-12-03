@@ -5,6 +5,35 @@ from entree import *
 from sortie import *
 from alignements import *
 
+def JouerTour(nomJoueur: str, joueur: Case):
+
+    AfficherCestAuTourDe(nomJoueur)
+    colonne = DemanderColonne()
+    ligne = ObtenirLigneDePose(colonne)
+
+    grille[colonne][ligne] = joueur
+
+    AfficherGrille()
+
+    QuitterSiGagnant(colonne, ligne, nomJoueur)
+
+def JouerTourAuto(nomJoueur: str, joueur: Case):
+
+    AfficherCestAuTourDe(nomJoueur)
+    colonne = DemanderColonnePC()
+    ligne = ObtenirLigneDePose(colonne)
+
+    grille[colonne][ligne] = joueur
+
+    AfficherGrille()
+
+    QuitterSiGagnant(colonne, ligne, nomJoueur)
+
+def QuitterSiGagnant(colonne: int, ligne: int, nomJoueur: str):
+    if ChercherAlignement(colonne, ligne):
+        AfficherMessageGagnant(nomJoueur)
+        quit()
+
 """ Boucle principale du programme """
 def Main():
 
@@ -14,33 +43,24 @@ def Main():
 
     AfficherGrille()
 
-    # Boucle infine
+    # Boucle principaele
     while True:
+        
+        if GrilleEstPleine():
 
-        AfficherCestAuTourDe(nomJoueur1) # Afficher tour
+            AfficherMessageMatchNul()
+            quit()
 
-        derniereColonne = DemanderColonne() # Demande colonne
-        derniereLigne = ObtenirLigneDePose(derniereColonne) # Obtenir ligne
+        else:
 
-        grille[derniereColonne][derniereLigne] = Case.JOUEUR_1 # Placer le pion
+            JouerTour(nomJoueur1, Case.JOUEUR_1)
 
-        AfficherGrille() # Afficher la grille
+            if jouerAvecPC:
 
-        if ChercherAlignement(derniereColonne, derniereLigne): # Chercher un alignement
-            break
+                JouerTourAuto(nomJoueur2, Case.JOUEUR_2)
 
+            else:
 
-        AfficherCestAuTourDe(nomJoueur2)
-
-        derniereColonne = DemanderColonnePC() if jouerAvecPC else DemanderColonne()
-        derniereLigne = ObtenirLigneDePose(derniereColonne)
-
-        grille[derniereColonne][derniereLigne] = Case.JOUEUR_2
-
-        AfficherGrille()
-
-        if ChercherAlignement(derniereColonne, derniereLigne):
-            break
-
+                JouerTour(nomJoueur2, Case.JOUEUR_2)
 
 Main()
