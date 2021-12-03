@@ -6,6 +6,7 @@
 # Fichier de lock OpenDocument
 
 *.odt\#
+*.odp\#
 
 # User-specific files
 *.rsuser
