@@ -38,9 +38,9 @@ def ChercherAlignement(colonne: int, ligne: int):
 
             # Opérateurs séquentiels
 
-            vertical = vertical and ligneDevant and grille[colonne][ligne + decalageIndex] == joueur
-            horizontal = horizontal and colonneDevant and grille[colonne + decalageIndex][ligne] == joueur
-            diagonaleGHDB = diagonaleGHDB and colonneDevant and ligneDevant and grille[colonne + decalageIndex][ligne + decalageIndex] == joueur
+            vertical      = vertical and ligneDevant and                          grille[colonne][ligne + decalageIndex] == joueur
+            horizontal    = horizontal and colonneDevant and                      grille[colonne + decalageIndex][ligne] == joueur
+            diagonaleGHDB = diagonaleGHDB and colonneDevant and ligneDevant and   grille[colonne + decalageIndex][ligne + decalageIndex] == joueur
             diagonaleDHGB = diagonaleDHGB and colonneDevant and ligneDerriere and grille[colonne + decalageIndex][ligne - decalageIndex] == joueur
 
         if vertical or horizontal or diagonaleGHDB or diagonaleDHGB: # si on a trouvé un alignement
