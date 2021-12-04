@@ -4,9 +4,9 @@
         <attribute name="name" value="Puissance 4"/>
         <attribute name="authors" value="Scover"/>
         <attribute name="about" value="Python - NSI"/>
-        <attribute name="saved" value="2021-12-03 08:44:09 "/>
+        <attribute name="saved" value="2021-12-04 02:55:11 "/>
         <attribute name="created" value="U2NvdmVyO0RFU0tUT1AtMDNGVFBVTzsyMDIxLTEyLTAyOyIwNjoxMjowMSAiOzI4ODE="/>
-        <attribute name="edited" value="U2NvdmVyO0RFU0tUT1AtMDNGVFBVTzsyMDIxLTEyLTAzOyIwODo0NDowOSAiOzEyOzMwNTU="/>
+        <attribute name="edited" value="U2NvdmVyO0RFU0tUT1AtMDNGVFBVTzsyMDIxLTEyLTA0OyIwMjo1NToxMSAiOzE2OzMwNDk="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -15,7 +15,7 @@
                 <if expression="GrilleEstPleine()">
                     <then>
                         <call expression="AfficherMessageMatchNul()"/>
-                        <call expression="quit()"/>
+                        <call expression="exit()"/>
                     </then>
                     <else>
                         <call expression="JouerTour(nomJoueur1, CaseJOUEUR1)"/>
@@ -74,34 +74,6 @@
         </parameters>
         <body/>
     </function>
-    <function name="JouerTour" type="None" variable="">
-        <parameters>
-            <parameter name="nomJoueur" type="String" array="False"/>
-            <parameter name="joueur" type="Integer" array="False"/>
-        </parameters>
-        <body>
-            <call expression="AfficherCestAuTourDe(nomJoueur)"/>
-            <assign variable="colonne" expression="DemanderColonne()"/>
-            <assign variable="ligne" expression="ObtenirLigneDePose(colonne)"/>
-            <call expression="grille(colonne, ligne, joueur)"/>
-            <call expression="AfficherGrille()"/>
-            <call expression="QuitterSiGagnant(colonne, ligne, nomJoueur)"/>
-        </body>
-    </function>
-    <function name="JouerTourAuto" type="None" variable="">
-        <parameters>
-            <parameter name="nomJoueur" type="String" array="False"/>
-            <parameter name="Case" type="Integer" array="False"/>
-        </parameters>
-        <body>
-            <call expression="AfficherCestAuTourDe(nomJoueur)"/>
-            <assign variable="colonne" expression="DemanderColonnePC()"/>
-            <assign variable="ligne" expression="ObtenirLigneDePose(colonne)"/>
-            <call expression="grille(colonne, ligne, joueur)"/>
-            <call expression="AfficherGrille()"/>
-            <call expression="QuitterSiGagnant(colonne, ligne, nomJoueur)"/>
-        </body>
-    </function>
     <function name="ObtenirLigneDePose" type="Integer" variable="ERREURCOLONNEPLEINE">
         <parameters>
             <parameter name="colonne" type="Integer" array="False"/>
@@ -110,7 +82,7 @@
             <for variable="ligne" start="HAUTEUR" end="0" direction="dec" step="1">
                 <if expression="grille(colonne, ligne) == CaseVIDE">
                     <then>
-                        <assign variable="return" expression="ligne"/>
+                        <call expression="return(ligne)"/>
                     </then>
                     <else/>
                 </if>
@@ -127,7 +99,7 @@
             <if expression="ChercherAlignement(colonne, ligne)">
                 <then>
                     <call expression="AfficherMessageGagnant(nomJoueur)"/>
-                    <call expression="quit()"/>
+                    <call expression="exit()"/>
                 </then>
                 <else/>
             </if>

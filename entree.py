@@ -21,10 +21,10 @@ def DemanderNomJoueur1():
 def DemanderNomJoueur2():
     return input("Nom du joueur 2 : ")
 
-"""Retourne une colonne valid où jouer, choisie par l'utilisateur."""
+"""Retourne une colonne valide où jouer, choisie par l'utilisateur."""
 def DemanderColonne():
     
-    colonne = int(input("Colonne : ")) - 1
+    colonne = -1
     while not EstColonneValide(colonne) or ObtenirLigneDePose(colonne) == ERREUR_COLONNE_PLEINE:
         try:
             # on enlève 1 : les colonnes commencent par 1 pour l'utilisateur mais par 0 en index de grille.
