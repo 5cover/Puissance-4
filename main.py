@@ -4,6 +4,7 @@ from config import *
 from entree import *
 from sortie import *
 from alignements import *
+from sys import exit 
 
 def JouerTour(nomJoueur: str, joueur: Case):
 
@@ -32,7 +33,7 @@ def JouerTourAuto(nomJoueur: str, joueur: Case):
 def QuitterSiGagnant(colonne: int, ligne: int, nomJoueur: str):
     if ChercherAlignement(colonne, ligne):
         AfficherMessageGagnant(nomJoueur)
-        quit()
+        exit()
 
 """ Boucle principale du programme """
 def Main():
@@ -49,7 +50,7 @@ def Main():
         if GrilleEstPleine():
 
             AfficherMessageMatchNul()
-            quit()
+            exit()
 
         else:
 
