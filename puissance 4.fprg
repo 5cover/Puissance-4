@@ -4,9 +4,9 @@
         <attribute name="name" value="Puissance 4"/>
         <attribute name="authors" value="Scover"/>
         <attribute name="about" value="Python - NSI"/>
-        <attribute name="saved" value="2021-12-04 02:55:11 "/>
+        <attribute name="saved" value="2021-12-05 10:32:08 "/>
         <attribute name="created" value="U2NvdmVyO0RFU0tUT1AtMDNGVFBVTzsyMDIxLTEyLTAyOyIwNjoxMjowMSAiOzI4ODE="/>
-        <attribute name="edited" value="U2NvdmVyO0RFU0tUT1AtMDNGVFBVTzsyMDIxLTEyLTA0OyIwMjo1NToxMSAiOzE2OzMwNDk="/>
+        <attribute name="edited" value="U2NvdmVyO0RFU0tUT1AtMDNGVFBVTzsyMDIxLTEyLTA1OyIxMDozMjowOCAiOzE3OzMwNTE="/>
     </attributes>
     <function name="Main" type="None" variable="">
         <parameters/>
@@ -32,7 +32,7 @@
             </while>
         </body>
     </function>
-    <function name="ChercherAlignement" type="Boolean" variable="">
+    <function name="ChercherAlignement" type="Boolean" variable="False">
         <parameters>
             <parameter name="colonne" type="Integer" array="False"/>
             <parameter name="ligne" type="Integer" array="False"/>
